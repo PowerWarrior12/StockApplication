@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextAppearance.StockApplication.V23.Base" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="fontFamily">@font/japari_sans</item>
+    </style>
+
+    <style name="TextAppearance.StockApplication.V23.Base.Body" parent="TextAppearance.StockApplication.V23.Base">
+        <item name="android:textSize">@dimen/text_body_size_first</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="TextAppearance.StockApplication.V23.Base.Header" parent="TextAppearance.StockApplication.V23.Base">
+        <item name="android:textSize">@dimen/text_body_size_first</item>
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.StockApplication.Body" parent="TextAppearance.StockApplication.V23.Base.Body"/>
+
+    <style name="TextAppearance.StockApplication.Header" parent="TextAppearance.StockApplication.V23.Base.Header"/>
+
+</resources>

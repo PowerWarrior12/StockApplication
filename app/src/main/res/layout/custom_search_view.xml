@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/search_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <ImageView
+        style="@style/Widget.StockApplication.ImageButton"
+        android:src="@drawable/ic_search"/>
+
+    <TextView
+        android:textAppearance="@style/TextAppearance.StockApplication.Body"
+        android:text="@string/search_hint"
+        android:layout_marginStart="@dimen/margin_primary"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

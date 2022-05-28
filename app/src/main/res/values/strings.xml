@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">StockApplication</string>
+    <string name="search_hint">Search stocks…</string>
+    //Examples
+    <string name="name_example">Apple Inc.</string>
+    <string name="symbol_example">AAPL</string>
+    <string name="price_example">149.64</string>
+</resources>

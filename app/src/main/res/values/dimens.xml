@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    //Common
+    <dimen name="margin_primary">16dp</dimen>
+    <dimen name="margin_secondary">8dp</dimen>
+    <dimen name="elevation_first">64dp</dimen>
+    //Widgets
+    <dimen name="menu_item_size">44dp</dimen>
+    <dimen name="menu_item_padding">8dp</dimen>
+    //Text
+    <dimen name="text_body_size_first">16dp</dimen>
+    <dimen name="text_body_size_second">16dp</dimen>
+    <dimen name="text_header_size_first">14dp</dimen>
+    <dimen name="text_header_size_second">24dp</dimen>
+</resources>
