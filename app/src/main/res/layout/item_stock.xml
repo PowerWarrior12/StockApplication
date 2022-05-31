@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/circle_rect"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/circle_rect">
 
     <ImageView
         android:id="@+id/image_logo"
@@ -14,36 +14,38 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
         tools:srcCompat="@drawable/logo_example" />
 
     <TextView
-        android:textAppearance="@style/TextAppearance.StockApplication.Header"
         android:id="@+id/text_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_secondary"
-        tools:text="@string/name_example"
+        android:textAppearance="@style/TextAppearance.StockApplication.Header"
         app:layout_constraintStart_toEndOf="@+id/image_logo"
-        app:layout_constraintTop_toTopOf="@+id/image_logo" />
+        app:layout_constraintTop_toTopOf="@+id/image_logo"
+        tools:text="@string/name_example" />
 
     <TextView
-        android:textAppearance="@style/TextAppearance.StockApplication.Body"
         android:id="@+id/text_symbol"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_secondary"
-        tools:text="@string/symbol_example"
+        android:textAppearance="@style/TextAppearance.StockApplication.Body"
         app:layout_constraintBottom_toBottomOf="@+id/image_logo"
-        app:layout_constraintStart_toEndOf="@+id/image_logo" />
+        app:layout_constraintStart_toEndOf="@+id/image_logo"
+        tools:text="@string/symbol_example" />
 
     <TextView
-        android:textAppearance="@style/TextAppearance.StockApplication.Body"
         android:id="@+id/text_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/margin_secondary"
-        tools:text="@string/price_example"
+        android:textAppearance="@style/TextAppearance.StockApplication.Body"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/price_example" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
