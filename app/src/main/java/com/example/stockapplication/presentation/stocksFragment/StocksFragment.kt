@@ -66,10 +66,6 @@ class StocksFragment : Fragment(R.layout.fragment_stock_list) {
         viewModel.companyStocksLiveData.observe(viewLifecycleOwner) { stocksList ->
             stocksAdapter.submitList(stocksList)
         }
-        viewModel.errorLiveData.observe(viewLifecycleOwner) { error ->
-            binding.stockRecycler.isVisible = !error
-            binding.errorImage.isVisible = error
-        }
     }
 
     companion object {

@@ -15,12 +15,4 @@
         tools:itemCount="12"
         tools:listitem="@layout/item_stock" />
 
-    <ImageView
-        android:id="@+id/error_image"
-        android:layout_gravity="center"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:srcCompat="@android:drawable/ic_dialog_alert"
-        app:tint="@color/purple_200" />
-
 </FrameLayout>

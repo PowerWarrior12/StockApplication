@@ -35,7 +35,7 @@ class HttpService {
 
     private fun generateClient(): OkHttpClient =
         OkHttpClient.Builder()
-            .readTimeout(5, TimeUnit.SECONDS)
+            .readTimeout(10, TimeUnit.SECONDS)
             .connectTimeout(10, TimeUnit.SECONDS)
             .build()
 

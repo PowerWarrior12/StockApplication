@@ -1,5 +1,6 @@
 package com.example.stockapplication.presentation.stocksFragment
 
+import android.os.Build
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,15 +11,20 @@ import com.example.stockapplication.domain.interactors.LoadCompanyStockInteracto
 import com.example.stockapplication.domain.interactors.LoadCompanyStocksInteractor
 import com.example.stockapplication.utils.Result
 import com.example.stockapplication.utils.tickerFlow
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.lang.Exception
 import java.time.LocalDateTime
+import java.util.concurrent.Executors
 import kotlin.time.Duration
 import javax.inject.Inject
 import kotlin.time.Duration.Companion.seconds
+import kotlin.time.TimeSource
 
 class StocksViewModel(
     private val loadStocksInteractor: LoadCompanyStocksInteractor,
@@ -30,6 +36,7 @@ class StocksViewModel(
     val errorLiveData = MutableLiveData<Boolean>(false)
     private var initialized = false
     private var visibleStocks = mutableListOf<CompanyStock>()
+    private val executorsService = Executors.newFixedThreadPool(10)
 
     init {
         viewModelScope.launch {
@@ -47,11 +54,17 @@ class StocksViewModel(
 
     fun stockWasBound(stock: CompanyStock) {
         viewModelScope.launch {
-            val stocksResult = updateCompanyStock(companyStocksLiveData.value?.toMutableList()!!, stock)
-            if (stocksResult is Result.Success) {
-                companyStocksLiveData.postValue(stocksResult.data!!)
-            } else {
-                errorLiveData.postValue(true)
+            withContext(Dispatchers.IO) {
+                try {
+                    val stocksResult = updateCompanyStock(companyStocksLiveData.value?.toMutableList()!!, stock)
+                    if (stocksResult is Result.Success) {
+                        companyStocksLiveData.postValue(stocksResult.data!!)
+                    } else {
+                        errorLiveData.postValue(true)
+                    }
+                } catch (exception: Exception) {
+                    errorLiveData.postValue(true)
+                }
             }
         }
     }
@@ -71,19 +84,21 @@ class StocksViewModel(
     }
 
     private suspend fun updateVisibleStocks() {
-        Log.d("UpdateStocks", "Update")
-        var currentStocks = companyStocksLiveData.value?.toMutableList()!!
-        visibleStocks.forEach { stock ->
-            val stocksResult = updateCompanyStock(currentStocks, stock)
-            if (stocksResult is Result.Success) {
-                currentStocks = stocksResult.data
-            } else {
-                errorLiveData.postValue(true)
-                return@forEach
+        try {
+            var currentStocks = companyStocksLiveData.value?.toMutableList()!!
+            visibleStocks.forEach { stock ->
+                val stocksResult = updateCompanyStock(currentStocks, stock)
+                if (stocksResult is Result.Success) {
+                    currentStocks = stocksResult.data
+                } else {
+                    errorLiveData.postValue(true)
+                    return@forEach
+                }
             }
+            companyStocksLiveData.postValue(currentStocks)
+        } catch (exception: Exception) {
+            errorLiveData.postValue(true)
         }
-        Log.d("UpdateStocks", "$visibleStocks")
-        companyStocksLiveData.postValue(currentStocks)
     }
 
     private suspend fun updateCompanyStock(
